@@ -1,6 +1,6 @@
 // +build freebsd openbsd netbsd dragonfly linux
 
-package log
+package mlog
 
 import (
 	"log"

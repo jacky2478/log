@@ -1,6 +1,6 @@
 // +build darwin
 
-package log
+package mlog
 
 import (
 	"log"

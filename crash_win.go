@@ -1,6 +1,6 @@
 // +build windows
 
-package log
+package mlog
 
 import (
 	"log"
