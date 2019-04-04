@@ -6,22 +6,14 @@ Simple and efficient micro mlog library that supports features such as condition
 package main
 
 import (
-	"github.com/fatih/color"
 	"github.com/jacky2478/mlog"
 )
 
 func initLog() {
-	mlog.SetFlags(mlog.LstdFlags)
 	mlog.SetDepth(4)
+	mlog.SetFlags(mlog.LstdFlags)
 	mlog.SetHighlighting(false)
 	mlog.SetLevel(mlog.LOG_LEVEL_ALL)
-
-	// support log with color
-	mlog.SetColorByLogType(mlog.LOG_INFO, color.GreenString)
-	mlog.SetColorByLogType(mlog.LOG_ERROR, color.RedString)
-	mlog.SetColorByLogType(mlog.LOG_WARNING, color.YellowString)
-	mlog.SetColorByLogType(mlog.LOG_FATAL, color.RedString)
-	mlog.SetColorByLogType(mlog.LOG_DEBUG, color.BlueString)
 }
 
 func main() {

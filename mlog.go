@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"runtime"
+	"github.com/jacky2478/color"
 )
 
 const (
@@ -49,6 +50,13 @@ var _logMap = make(map[string]*logger, 0)
 func init() {
 	SetFlags(Ldate | Ltime | Lshortfile)
 	SetHighlighting(runtime.GOOS != "windows")
+
+	// support log with color
+	SetColorByLogType(LOG_INFO, color.GreenString)
+	SetColorByLogType(LOG_ERROR, color.RedString)
+	SetColorByLogType(LOG_WARNING, color.YellowString)
+	SetColorByLogType(LOG_FATAL, color.RedString)
+	SetColorByLogType(LOG_DEBUG, color.BlueString)
 }
 
 func Logger() *log.Logger {
