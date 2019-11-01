@@ -5,6 +5,7 @@ import (
 	"io"
 	"log"
 	"runtime"
+
 	"github.com/jacky2478/color"
 )
 
@@ -191,4 +192,59 @@ func LogPrint(t LogType, v ...interface{}) {
 
 func LogPrintf(t LogType, format string, v ...interface{}) {
 	_log.LogPrintf(t, format, v...)
+}
+
+type MLog struct {
+	Module string
+}
+
+func (p *MLog) print(level string, datas ...interface{}) {
+	if getLogLevel(level) > getLogLevel(Level) {
+		return
+	}
+
+	switch level {
+	case "Info":
+		Info(datas...)
+	case "Debug":
+		Debug(datas...)
+	case "Errof":
+		Error(datas...)
+	case "Warning":
+		Warning(datas...)
+	}
+}
+
+func (p *MLog) printf(level string, format string, datas ...interface{}) {
+	if getLogLevel(level) > getLogLevel(Level) {
+		return
+	}
+
+	switch level {
+	case "Info":
+		Infof(format, datas...)
+	case "Debug":
+		Debugf(format, datas...)
+	case "Errof":
+		Errorf(format, datas...)
+	case "Warning":
+		Warningf(format, datas...)
+	}
+}
+
+func (p *MLog) Info(datas ...interface{}) { p.print("Info", datas...) }
+func (p *MLog) Infof(format string, datas ...interface{}) {
+	p.printf("Info", format, datas...)
+}
+func (p *MLog) Debug(datas ...interface{}) { p.print("Debug", datas...) }
+func (p *MLog) Debugf(format string, datas ...interface{}) {
+	p.printf("Debug", format, datas...)
+}
+func (p *MLog) Warning(datas ...interface{}) { p.print("Warning", datas...) }
+func (p *MLog) Warningf(format string, datas ...interface{}) {
+	p.printf("Warning", format, datas...)
+}
+func (p *MLog) Error(datas ...interface{}) { p.print("Error", datas...) }
+func (p *MLog) Errorf(format string, datas ...interface{}) {
+	p.printf("Error", format, datas...)
 }
