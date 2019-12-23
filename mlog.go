@@ -199,7 +199,7 @@ type MLog struct {
 }
 
 func (p *MLog) print(level string, datas ...interface{}) {
-	if getLogLevel(level) > getLogLevel(Level) {
+	if getLogLevel(level) > _log.level {
 		return
 	}
 
@@ -216,7 +216,7 @@ func (p *MLog) print(level string, datas ...interface{}) {
 }
 
 func (p *MLog) printf(level string, format string, datas ...interface{}) {
-	if getLogLevel(level) > getLogLevel(Level) {
+	if getLogLevel(level) > _log.level {
 		return
 	}
 
@@ -230,6 +230,18 @@ func (p *MLog) printf(level string, format string, datas ...interface{}) {
 	case "Warning":
 		Warningf(format, datas...)
 	}
+}
+
+func getLogLevel(level string) LogLevel {
+	switch level {
+	case "Info":
+		return LOG_LEVEL_INFO
+	case "Debug":
+		return LOG_LEVEL_DEBUG
+	case "Error":
+		return LOG_LEVEL_WARN
+	}
+	return 0
 }
 
 func (p *MLog) Info(datas ...interface{}) { p.print("Info", datas...) }

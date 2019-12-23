@@ -1,4 +1,6 @@
-package mlog
+package adapter
+
+import "github.com/jacky2478/mlog"
 
 var (
 	Level = "Info"
@@ -20,7 +22,7 @@ func UseSys() {
 
 func UseMlog() {
 	GetLog = func(module string) ILog {
-		return &MLog{Module: module}
+		return &mlog.MLog{Module: module}
 	}
 }
 
@@ -37,3 +39,4 @@ type ILog interface {
 	Error(datas ...interface{})
 	Errorf(format string, datas ...interface{})
 }
+

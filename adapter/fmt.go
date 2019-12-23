@@ -1,7 +1,8 @@
-package mlog
+package adapter
 
 import (
 	"fmt"
+	"github.com/jacky2478/mlog"
 	"log"
 	"path/filepath"
 	"runtime"
@@ -53,14 +54,14 @@ func stackTrace(depth int) string {
 	return strFileLine
 }
 
-func getLogLevel(level string) LogLevel {
+func getLogLevel(level string) mlog.LogLevel {
 	switch level {
 	case "Info":
-		return LOG_LEVEL_INFO
+		return mlog.LOG_LEVEL_INFO
 	case "Debug":
-		return LOG_LEVEL_DEBUG
+		return mlog.LOG_LEVEL_DEBUG
 	case "Error":
-		return LOG_LEVEL_WARN
+		return mlog.LOG_LEVEL_WARN
 	}
 	return 0
 }
